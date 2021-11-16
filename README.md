@@ -1,3 +1,22 @@
+# Shattered Pixel Lore
+
+Fork of Shattered Pixel Dungeon, primarily created to answer the questions you may have on how everything came to be...
+
+Shattered Pixel Lore is a compilation of the stories of the heroes, bosses, enemies, allies, and more! Play each of their stories in runs roughly 5 floors long with dynamic gameplay.
+
+Play as goo...
+![SPL](https://user-images.githubusercontent.com/66337133/142048580-94de951b-4ff6-469e-be90-24d3008c7d87.PNG)
+
+
+Unlike Shattered Pixel Dungeon, SPL is meant to be community based, so if you have a suggestion, post in issues and I will try to get back to you!  
+
+Join the development! 
+
+
+
+
+
+Original ReadMe:
 # Shattered Pixel Dungeon
 
 A Roguelike RPG, with randomly generated levels, items, enemies, and traps! Based on the [source code of Pixel Dungeon](https://github.com/00-Evan/pixel-dungeon-gradle), by [Watabou](https://www.watabou.ru).
