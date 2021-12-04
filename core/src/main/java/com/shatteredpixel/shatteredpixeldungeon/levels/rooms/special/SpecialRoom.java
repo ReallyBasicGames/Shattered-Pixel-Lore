@@ -63,6 +63,8 @@ public abstract class SpecialRoom extends Room {
 	
 	private static final String ENTRANCE = "entrance";
 	
+	
+	
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
@@ -77,6 +79,11 @@ public abstract class SpecialRoom extends Room {
 		if (bundle.contains(ENTRANCE)){
 			entrance = (Door)bundle.get(ENTRANCE);
 		}
+	}
+	
+	
+	public void unlockRoom() {
+		entrance.set( Door.Type.REGULAR );
 	}
 	
 	private static final ArrayList<Class<? extends SpecialRoom>> ALL_SPEC = new ArrayList<>( Arrays.asList(

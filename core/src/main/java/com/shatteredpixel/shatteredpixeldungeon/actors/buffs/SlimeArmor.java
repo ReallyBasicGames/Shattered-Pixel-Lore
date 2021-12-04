@@ -40,10 +40,7 @@ public class SlimeArmor extends Buff {
 	public boolean act() {
 		if (target.isAlive()) {
 			
-			if(target.HP < target.HT) {
-				target.HP ++;
-				level --;
-			}
+			level --;
 			
 
 			spend( interval );

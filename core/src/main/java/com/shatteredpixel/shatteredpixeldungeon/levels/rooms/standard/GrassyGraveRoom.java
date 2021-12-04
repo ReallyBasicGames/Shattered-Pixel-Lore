@@ -23,10 +23,13 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard;
 
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.watabou.utils.Random;
 
 public class GrassyGraveRoom extends StandardRoom {
@@ -43,6 +46,8 @@ public class GrassyGraveRoom extends StandardRoom {
 		
 		int w = width() - 2;
 		int h = height() - 2;
+		
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) return;
 		int nGraves = Math.max( w, h ) / 2;
 		
 		int index = Random.Int( nGraves );

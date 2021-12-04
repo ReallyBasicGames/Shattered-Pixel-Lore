@@ -84,6 +84,11 @@ public enum HeroClass {
 
 		hero.heroClass = this;
 		Talent.initClassTalents(hero);
+		
+		if(hero.heroClass == GOO_HERO) {
+			initGoo( hero );
+			return;
+		}
 
 		Item i = new ClothArmor().identify();
 		if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ClothArmor)i;

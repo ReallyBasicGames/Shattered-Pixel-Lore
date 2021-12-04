@@ -31,6 +31,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,7 +53,8 @@ public class Bones {
 		depth = Dungeon.depth;
 
 		//heroes which have won the game, who die far above their farthest depth, or who are challenged drop no bones.
-		if (Statistics.amuletObtained || (Statistics.deepestFloor - 5) >= depth || Dungeon.challenges > 0) {
+		// goo hero also drops no bones (it doesn't have any!)
+		if (Statistics.amuletObtained || (Statistics.deepestFloor - 5) >= depth || Dungeon.challenges > 0 || Dungeon.hero.heroClass == HeroClass.GOO_HERO) {
 			depth = -1;
 			return;
 		}
@@ -139,6 +142,11 @@ public class Bones {
 			}
 
 		} else {
+			// goo cannot find bones
+			if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) {
+				return null;
+			}
+			
 			//heroes who are challenged cannot find bones
 			if (depth == Dungeon.depth && Dungeon.challenges == 0) {
 				FileUtils.deleteFile( BONES_FILE );

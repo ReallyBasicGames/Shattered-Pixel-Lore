@@ -37,6 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AnkhInvulnerability
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Awareness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barkskin;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.SlimeArmor;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Moisture;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Berserk;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Bless;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
@@ -187,7 +188,7 @@ public class Hero extends Char {
 	
 	public float awareness;
 	
-	public int lvl = 1;
+	public int lvl = 2;
 	public int exp = 0;
 	
 	public int HTBoost = 0;
@@ -514,13 +515,14 @@ public class Hero extends Char {
 		
 		// damage system works differently for goo
 		if(heroClass == HeroClass.GOO_HERO) {
-			SlimeArmor slimeArmor = buff(SlimeArmor.class);
-			if(slimeArmor != null)  {
-				if(hasTalent(Talent.SHARP_SLIME)) {
-					dmg = (int)(((pointsInTalent(Talent.SHARP_SLIME) == 1)? 0.2 : 0.3) * slimeArmor.level());
+			Moisture moisture = buff(Moisture.class);
+			if(moisture != null)  {
+				if(hasTalent(Talent.SHARP_GOOP)) {
+					dmg = (int)(((pointsInTalent(Talent.SHARP_GOOP) == 1)? 0.2 : 0.3) * moisture.level());
 				} else {
-					dmg = (int)(0.1 * slimeArmor.level());
+					dmg = (int)(0.1 * moisture.level());
 				}
+				if(moisture.isArid()) dmg /= 2;
 			} 
 			dmg += Random.NormalIntRange( 0, 2 );
 			
@@ -647,13 +649,12 @@ public class Hero extends Char {
 			buff(Endure.EndureTracker.class).endEnduring();
 		}
 		
-		if (heroClass == HeroClass.GOO_HERO && Dungeon.level.water[pos]) {
+		if (heroClass == HeroClass.GOO_HERO) {
 			if (Dungeon.level.water[pos]) {
 				if(hasTalent(Talent.HARD_GOO)) {
 					Buff.affect(this, SlimeArmor.class).set( 5, (pointsInTalent(Talent.HARD_GOO) == 1)? 2 : 3 );
-				} else {
-					Buff.affect(this, SlimeArmor.class).set( 5, 1 );
 				}
+				Buff.affect(this, Moisture.class).set( 5, 1 );
 			}
 		}
 		
@@ -1592,6 +1593,10 @@ public class Hero extends Char {
 	
 	public boolean isStarving() {
 		return Buff.affect(this, Hunger.class).isStarving();
+	}
+	
+	public boolean isArid() {
+		return Buff.affect(this, Moisture.class).isArid();
 	}
 	
 	@Override

@@ -22,6 +22,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels;
 
 import com.shatteredpixel.shatteredpixeldungeon.Bones;
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -37,6 +38,8 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.SewerBoss
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.SewerBossExitRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.StandardRoom;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.watabou.noosa.Group;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -70,6 +73,8 @@ public class SewerBossLevel extends SewerLevel {
 		GooBossRoom gooRoom = GooBossRoom.randomGooRoom();
 		initRooms.add(gooRoom);
 		((FigureEightBuilder)builder).setLandmarkRoom(gooRoom);
+		// don't add rat king room if playing as goo
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) return initRooms;
 		initRooms.add(new RatKingRoom());
 		return initRooms;
 	}

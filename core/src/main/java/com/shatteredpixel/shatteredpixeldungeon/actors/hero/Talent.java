@@ -145,8 +145,9 @@ public enum Talent {
 	EAGLE_EYE(119, 4), GO_FOR_THE_EYES(120, 4), SWIFT_SPIRIT(121, 4),
 	
 	
+	// GOO only has 1 tier
 	//GOO T1
-	CAUSTIC_OOZE(27), HARD_GOO(27), SHARP_SLIME(27), 
+	CAUSTIC_OOZE(27), HARD_GOO(27), SHARP_GOOP(27), SLIPPERY_SLIME(27), 
 
 	//universal T4
 	HEROIC_ENERGY(26, 4), //See icon() and title() for special logic for this one
@@ -498,7 +499,7 @@ public enum Talent {
 				Collections.addAll(tierTalents, NATURES_BOUNTY, SURVIVALISTS_INTUITION, FOLLOWUP_STRIKE, NATURES_AID);
 				break;
 			case GOO_HERO:
-				Collections.addAll(tierTalents, CAUSTIC_OOZE, HARD_GOO, SHARP_SLIME, IRON_WILL);
+				Collections.addAll(tierTalents, CAUSTIC_OOZE, HARD_GOO, SHARP_GOOP, SLIPPERY_SLIME);
 				break;
 		}
 		for (Talent talent : tierTalents){

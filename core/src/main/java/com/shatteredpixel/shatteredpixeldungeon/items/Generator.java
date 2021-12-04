@@ -170,6 +170,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -488,6 +490,7 @@ public class Generator {
 	}
 	
 	public static Item random() {
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) return null;
 		Category cat = Random.chances( categoryProbs );
 		if (cat == null){
 			generalReset();
@@ -498,6 +501,8 @@ public class Generator {
 	}
 	
 	public static Item random( Category cat ) {
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) return null;
+		
 		switch (cat) {
 			case ARMOR:
 				return randomArmor();

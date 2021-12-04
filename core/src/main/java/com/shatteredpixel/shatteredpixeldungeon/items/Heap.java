@@ -46,6 +46,8 @@ import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
@@ -105,6 +107,8 @@ public class Heap implements Bundlable {
 		}
 		sprite.link();
 		sprite.drop();
+		
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) items.clear();
 	}
 	
 	public Heap setHauntedIfCursed(){
@@ -143,6 +147,7 @@ public class Heap implements Bundlable {
 	}
 	
 	public void drop( Item item ) {
+		
 		
 		if (item.stackable && type != Type.FOR_SALE) {
 			

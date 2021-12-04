@@ -70,6 +70,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -684,7 +686,9 @@ public abstract class Mob extends Char {
 		}
 
 		if (alignment == Alignment.ENEMY){
-			rollToDropLoot();
+			// dont drop anything if this is goo
+			if(Dungeon.hero.heroClass != HeroClass.GOO_HERO) 
+				rollToDropLoot();
 
 			if (cause == Dungeon.hero
 					&& Dungeon.hero.hasTalent(Talent.LETHAL_MOMENTUM)

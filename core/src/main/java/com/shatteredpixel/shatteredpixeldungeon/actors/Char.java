@@ -520,6 +520,16 @@ public abstract class Char extends Actor {
 		if ( buff( Stamina.class ) != null) speed *= 1.5f;
 		if ( buff( Adrenaline.class ) != null) speed *= 2f;
 		if ( buff( Haste.class ) != null) speed *= 3f;
+		if ( buff( Haste.class ) != null) speed *= 3f;
+		
+		// goo haste talent
+		if(this == Dungeon.hero) {
+			if(Dungeon.hero.hasTalent(Talent.SLIPPERY_SLIME)) {
+				speed *= (Dungeon.hero.pointsInTalent(Talent.SLIPPERY_SLIME) == 1)? 1.1f : 1.25f;
+			}
+		}
+		
+		
 		return speed;
 	}
 	

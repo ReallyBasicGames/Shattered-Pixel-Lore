@@ -28,6 +28,8 @@ import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.SmokeScreen;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Web;
@@ -182,8 +184,8 @@ public abstract class Level implements Bundlable {
 
 		Random.pushGenerator( Dungeon.seedCurDepth() );
 		
-		if (!(Dungeon.bossLevel())) {
-
+		if (!(Dungeon.bossLevel()) && Dungeon.hero.heroClass != HeroClass.GOO_HERO) {
+			
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
 
 			if (Dungeon.isChallenged(Challenges.DARKNESS)){
@@ -243,6 +245,16 @@ public abstract class Level implements Bundlable {
 						break;
 				}
 			}
+		} else {
+			switch(Random.Int( 3 )) {
+				case 0: 
+					feeling = Feeling.WATER;
+					break;
+				case 1:
+					feeling = Feeling.GRASS;
+					break;
+			}
+			
 		}
 		
 		do {
@@ -599,6 +611,7 @@ public abstract class Level implements Bundlable {
 	}
 	
 	public void addItemToSpawn( Item item ) {
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) return;
 		if (item != null) {
 			itemsToSpawn.add( item );
 		}

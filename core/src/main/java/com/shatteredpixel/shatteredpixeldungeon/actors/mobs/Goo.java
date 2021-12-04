@@ -24,8 +24,11 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.LockedFloor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
@@ -44,6 +47,8 @@ import com.watabou.noosa.Camera;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+import com.watabou.noosa.Game;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.GooWinScene;
 
 public class Goo extends Mob {
 
@@ -250,6 +255,11 @@ public class Goo extends Mob {
 		Dungeon.level.unseal();
 		
 		GameScene.bossSlain();
+		
+		if(Dungeon.hero.heroClass == HeroClass.GOO_HERO) {
+			Game.switchScene( GooWinScene.class );
+		}
+		
 		Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
 		
 		//60% chance of 2 blobs, 30% chance of 3, 10% chance for 4. Average of 2.5
